@@ -1,4 +1,4 @@
-name: CI -> Deploy to My website
+name: CI -> Deploy to Pandamine
 on:
   push:
     branches: [ main, development ]
