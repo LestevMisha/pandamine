@@ -1,0 +1,54 @@
+.panel-default>.panel-heading {
+    border-radius: 1em !important;
+}
+
+.img-thumbnail, .alert-success, .alert-danger, .panel {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .3) !important;
+}
+
+.panel-default {
+    border-radius: 1em !important;
+}
+
+.btn-default {
+    padding: 0.5em 1em !important;
+    background-color: #61e0247a !important;
+    background-image: none !important;
+    font-size: 1em !important;
+    font-family: Arial !important;
+    border-radius: 0.5em !important;
+    border: none !important;
+    color: #000000 !important;
+    outline: none !important;
+    transition: background-color 0.225s ease-in-out !important;
+}
+
+.btn-default:hover { 
+    background-color: #ffffff !important;
+}
+
+.navbar-default .navbar-brand {
+    color: #ff000000;
+    /*background-image: linear-gradient(45deg, #61E024, #CE0014, #61E024, #CE0014, #61E024, #CE0014);*/
+    background-image: linear-gradient(to left, #40C82D 48%, #CE0014 48%, #CE0014 60%, #40C82D 60%);
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 1s linear infinite;
+    background-size: 200% auto;
+}
+
+@keyframes animate {
+    to {
+      background-position: -200% center;
+    }
+}
+
+.nav.nav-tabs.tabsServers li a {
+    transition: box-shadow 0.225s ease-in-out;
+}
+
+.nav.nav-tabs.tabsServers li a:hover {
+    box-shadow: inset #40C82D 0px 0px 5px 0px;
+}

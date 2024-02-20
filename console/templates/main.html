@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+{include file="main/head.html"}
+<body class="hold-transition skin-blue sidebar-mini">
+
+{if isset($error) }
+{include file="error/$error.html"}
+{else}
+<div class="wrapper">
+    {include file="main/header.html"}
+    {include file="main/sidebar.html"}
+
+    <div class="content-wrapper">
+        {include file="pages/$page.html"}
+    </div>
+    <footer class="main-footer">
+        Разработано с любовью для <a href="http://pandamine.ru/">PandaMine</a>
+    </footer>
+</div>
+{/if}
+{include file="main/footer.html"}
+</body>
+</html>
+

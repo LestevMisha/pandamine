@@ -1,0 +1,199 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=Cuprum&subset=latin,cyrillic);
+
+html, body{
+font-family: PT Sans;
+background: url('../images/bg.jpg') no-repeat top center fixed;
+background-size: 100% 120%;
+}
+
+
+.head{
+text-align: center;
+}
+
+.head h2, .head h4{
+color: white;
+}
+
+.privileges{
+margin-top: 250px;
+padding-top: 200px;
+padding-bottom: 150px;
+background: #3a3a3a;
+text-align: center;
+}
+
+.privileges h3, .contact h4{
+color: white;
+font-family: PT Sans;
+}
+
+.privileges h6{
+color:#BDC3C7;
+font-family: PT Sans;
+}
+
+.contact{
+margin-top: 50px;
+}
+
+.contact i{
+font-size: 28px;
+font-weight: bold;
+}
+
+.news{
+margin-top: 100px;
+background: white;
+padding-top: 50px;
+padding-bottom: 50px;
+}
+
+.news h3{
+font-family: PT Sans;
+}
+
+.form{
+max-width: 450px;
+}
+
+.well{
+display: inline-block;
+margin-top: 50px;
+transform: rotate(45deg);
+-webkit-transform: rotate(45deg);
+-moz-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+font-family: PT  Sans;
+border: 2px solid #3a3a3a;
+color: #ECF0F1;
+}
+.btn-default {
+	color: #fff;
+    background-color: #444;
+    border-color: rgba(0, 0, 0, 0.35);
+    border-radius: 150px;
+	transition: 0.3s;
+}
+
+.bth-default:hover {
+	color: #000;
+    background: #fff;
+}
+
+.stats{
+transform: rotate(-45deg);
+-webkit-transform: rotate(-45deg);
+-moz-transform: rotate(-45deg);
+-ms-transform: rotate(-45deg);
+-o-transform: rotate(-45deg);
+}
+
+.alert-error{
+background: #E74C3C;
+border-radius: 3px;
+border: 2px solid #bcbcbc;
+display: none;
+color: #ECF0F1;
+}
+
+.stats h6{
+padding-bottom: 5px;
+border-bottom: 3px solid #2980B9;
+}
+
+.social-icons {
+  text-align: center;
+  margin: 40px 0 20px;
+  padding-left: 0;
+  list-style: none; }
+  .social-icons li {
+    display: inline-block;
+    line-height: 1;
+    margin-right: 25px;
+    padding: 0; }
+    .social-icons li:last-child {
+      margin-right: 0; }
+  .social-icons a {
+    display: block;
+    width: 90px;
+    height: 90px;
+    font-size: 40px;
+    color: #fff;
+    line-height: 2.0;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 0 4px #697888;
+    box-shadow: 0 0 0 4px #697888;
+    -webkit-transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    overflow: hidden; }
+    .social-icons a:hover, .social-icons a:focus {
+      background-color: #3c454e;
+      color: #fff;
+      text-decoration: none;
+      -webkit-box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.3); }
+      .social-icons a:hover .fa, .social-icons a:focus .fa {
+        -webkit-animation: toBottomFromTop 0.3s forwards;
+        animation: toBottomFromTop 0.3s forwards; }
+
+@-webkit-keyframes toBottomFromTop {
+  49% {
+    -webkit-transform: translateY(100%); }
+
+  50% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%); }
+
+  51% {
+    opacity: 1; } }
+
+@-moz-keyframes toBottomFromTop {
+  49% {
+    -moz-transform: translateY(100%); }
+
+  50% {
+    opacity: 0;
+    -moz-transform: translateY(-100%); }
+
+  51% {
+    opacity: 1; } }
+
+@keyframes toBottomFromTop {
+  49% {
+    transform: translateY(100%); }
+
+  50% {
+    opacity: 0;
+    transform: translateY(-100%); }
+
+  51% {
+    opacity: 1; } }
+
+@media (max-width: 600px) {
+  .social-icons a {
+    width: 60px;
+    height: 60px;
+    font-size: 35px; } }
+@media (max-width: 480px) {
+  .social-icons {
+    margin-top: 26px; }
+    .social-icons li {
+      margin-top: 20px; } }
+@media (max-width: 600px) {
+  .social-icons a {
+    width: 45px;
+    height: 45px;
+    font-size: 25px; } }
+@media (max-width: 320px) {
+  .social-icons {
+    text-align: center; }
+    .social-icons li {
+      margin: 0 auto;
+      margin-right: 12px;
+      margin-bottom: 15px; } }
+
+
+.fa{display:inline-block;font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}

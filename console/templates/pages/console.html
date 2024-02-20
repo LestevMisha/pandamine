@@ -1,0 +1,49 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Консоль</h3>
+                </div>
+                <div class="box-body">
+                    <form method="POST" action="/console/ajax.php?type=send" id="phpmc-console">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="cmd" name="cmd" placeholder="Введите команду" onkeydown="return event.key !== '*'">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-primary" id="cmd_send" tabindex="-1"><i
+                                        class="fa fa-arrow-right" aria-hidden="true"></i> Отправить
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="console-msg" class="bg-black-gradient"></div>
+                    <hr>
+                    <ul class="list-group">
+                        <div id="console" class="log"></div>
+                        <li class="list-group-item list-group-item-danger">Загружаем историю...</li>
+                        <li class="list-group-item list-group-item-warning">Консоль запущена.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Доступные команды</h3>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-striped table-hover ">
+                        <tbody>
+                        {foreach from=$commands item=cmd}
+                        <tr class="info">
+                            <td>/{$cmd['query']}</td>
+                            <td>{$cmd['use']}</td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
