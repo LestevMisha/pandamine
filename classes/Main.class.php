@@ -129,8 +129,8 @@ public function buy($name, $group_id, $srv_id, $promo)
     if(!$server) return 0;
     $db_server = new DB($server['db']);
     // Check if the connection was successful
-    if ($db_server->connect_errno) {
-        die("Failed to connect to MySQL: " . $db_server->connect_error);
+    if (!$db_server->status) {
+        die("Failed to connect to MySQL: " . $db_server->status);
     }
     
     if ($srv_id == 1) {

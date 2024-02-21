@@ -4,12 +4,14 @@ $(document).ready(function () {
         var selectedValue = element.querySelector("option:checked").getAttribute("value");
         var uploadField = element.closest("form").querySelector(".upload-field");
 
-        if (selectedValue == '32' || selectedValue == '33' || selectedValue == '34') {
-            // Show upload field
-            uploadField.style.display = "block";
-        } else {
-            // Hide upload field
-            uploadField.style.display = "none";
+        if (uploadField !== null) {
+            if (selectedValue == '32' || selectedValue == '33' || selectedValue == '34') {
+                // Show upload field
+                uploadField.style.display = "block";
+            } else {
+                // Hide upload field
+                uploadField.style.display = "none";
+            }
         }
     }
 
@@ -30,6 +32,5 @@ $(document).ready(function () {
             }
         }
     });
- 
 
 });

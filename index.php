@@ -125,7 +125,7 @@ $main = new Main();
                                 foreach ($main->cfg['servers'] as $srv_name => $srv) {
                                     $i++; ?>
                                     <div class="tab-pane fade in <?= $i == 1 ? 'active' : '' ?>" id="srv-<?= $i ?>">
-                                        <form autocomplete="off" method="post" class="phpmc_buy" data-ready="0" action="/">
+                                        <form autocomplete="off" method="post" class="phpmc_buy" data-ready="0" action="/" <?php echo ($srv['srv_id'] == 4) ? 'enctype="multipart/form-data" id="upload-img"' : ''; ?>>
                                             <input type="hidden" name="srv_id" class="input-srv_id" value="<?= $srv['srv_id'] ?>">
                                             <div class="alert alert-dismissable alert-warning text-center">
                                                 Вы выбрали: <strong><?= $srv_name ?></strong>
@@ -136,22 +136,35 @@ $main = new Main();
                                                 <!--<ul id="hint-list"></ul> -->
                                             </div>
                                             <div class="form-group">
-                                                <label for="group" class="control-label">Выберите привилегию:</label>
+                                                <label for="group" class="control-label">
+                                                    <?php echo ($srv['srv_id'] == 4) ? "Выберите услугу:" : "Выберите привилеги"; ?>
+                                                </label>
                                                 <select name="group" class="form-control select-group" required="">
-                                                    <option selected="" disabled="">Выберите привилегию</option>
+                                                    <option selected="" disabled="">
+                                                        <?php echo ($srv['srv_id'] == 4) ? "Выберите услугу:" : "Выберите привилеги"; ?>
+                                                    </option>
                                                     <?php foreach ($srv['privileges'] as $priv_group => $priv_list) { ?>
                                                         <optgroup label="<?= $priv_group ?>">
-                                                            <?php foreach ($priv_list as $priv_name => $priv) { ?>
-                                                                <option data-price="<?= $priv['price'] ?>" value="<?= $priv['id'] ?>"><?= $priv_name ?> - <?= $priv['price'] ?> рублей.</option>
+                                                            <?php foreach ($priv_list as $priv_name => $priv) {
+                                                                // if price_text exists add text to price
+                                                                $apt = $priv['additional_price_text'] ? (" " . $priv['additional_price_text'] . ".") : " рублей.";
+                                                                // if price changes by denominater in days use it
+                                                                $denominator = (int)($priv['days'] ?? 1);
+                                                            ?>
+                                                                <option data-price="<?= $priv['price'] ?>" value="<?= $priv['id'] ?>"><?= $priv_name ?> - <?= ((int)$priv['price'] / $denominator) . $apt ?></option>
                                                             <?php } ?>
                                                         </optgroup>
                                                     <?php } ?>
                                                 </select>
                                             </div>
-                                            <div class="upload-field form-group" style="display: none;">
-                                                <label for="upload" class="control-label">Выберете Банер:</label>
-                                                <input class="file" type="file" name="upload" class="form-control" accept="image/*" />
-                                            </div>
+
+                                            <?php if ($srv['srv_id'] == 4) { ?>
+                                                <div class="upload-field form-group" style="display: none;">
+                                                    <label for="upload" class="control-label">Выберете Банер:</label>
+                                                    <input class="input-file" type="file" name="image" class="form-control" accept="image/*" />
+                                                </div>
+                                            <?php } ?>
+
                                             <div class="form-group has-feedback">
                                                 <label for="promocode" class="control-label">Введите промокод:</label>
                                                 <input type="text" name="promocode" class="form-control input-promocode" placeholder="если есть">
@@ -169,95 +182,6 @@ $main = new Main();
             </div>
         </div>
     </div>
-
-
-
-    <!-- JavaScript to capture data-index and send it to the server -->
-    <!--<script>-->
-    <!--    document.addEventListener("DOMContentLoaded", function () {-->
-    <!--// Get the element with the data-index attribute-->
-    <!--        var ulElement = document.getElementById('server-id-js');-->
-    <!--        var aElements = ulElement.querySelectorAll('[data-toggle="tab"]');-->
-    <!--        console.log(aElements)-->
-
-    <!--        aElements.forEach(element => {-->
-    <!--            element.addEventListener('click', function (e) {-->
-    <!--                var dataIndex = e.target.getAttribute('data-index')-->
-    <!--                server_request(dataIndex);-->
-    <!--            })-->
-    <!--            if (element.parentElement.classList.contains('active') == true) {-->
-    <!--                var dataIndex = element.getAttribute('data-index')-->
-    <!--                server_request(dataIndex);-->
-    <!--            }-->
-    <!--        });-->
-    <!--// Get the data-index attribute value-->
-
-    <!--       function server_request(dataIndex) {-->
-    <!--// Send the value to the server using AJAX-->
-    <!--            var xhr = new XMLHttpRequest();-->
-    <!--            xhr.open("POST", "./server_list.php", true);-->
-    <!--            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");-->
-    <!--            xhr.onreadystatechange = function () {-->
-    <!--                if (xhr.readyState === 4 && xhr.status === 200) {-->
-
-    <!--// Handle the server's response if needed-->
-    <!--                    var data = JSON.parse(xhr.responseText);-->
-    <!--                    console.log("DATA:", data);-->
-
-    <!--                    var users = data[1];-->
-    <!--                    console.log("users:", users);-->
-
-    <!--// Input element and hint list-->
-    <!--                    var tabContainer = document.getElementById('tabs-for-js');-->
-
-    <!--// Add an input event listener to the input field-->
-    <!--                    tabContainer.addEventListener('input', function (e) {-->
-    <!--                        var inputElement = e.target;-->
-    <!--                        if (inputElement.classList.contains('input-nick')) {-->
-    <!--                            var hintList = inputElement.nextElementSibling;-->
-
-    <!--var inputText = inputElement.value.toLowerCase(); // Convert input to lowercase-->
-    <!--                        var matches = [];-->
-
-    <!--// Filter the array for matches-->
-    <!--                        if (inputText) {-->
-    <!--                            matches = users.filter(function (item) {-->
-    <!--                                return [item[1].toLowerCase().includes(inputText), item[0].toLowerCase().includes(inputText)];-->
-    <!--                            });-->
-    <!--                        }-->
-
-    <!--// Clear the hint list-->
-    <!--                        hintList.innerHTML = '';-->
-
-    <!--// Display matching hints-->
-    <!--                        matches.forEach(function (match) {-->
-    <!--                            var hintItem = document.createElement('li');-->
-    <!--                            var span = document.createElement("span");-->
-    <!--                            span.textContent = match[0];-->
-    <!--                            hintItem.textContent = match[1];-->
-    <!--                            if (match[0] == "luxor") {-->
-    <!--                                span.style.color = "#E664F3";-->
-    <!--                            }-->
-    <!--                            hintItem.append(span);-->
-    <!--                            hintList.appendChild(hintItem);-->
-    <!--                        });-->
-
-    <!--// Add a click event listener to handle hint selection-->
-    <!--                        hintList.addEventListener('click', function (e) {-->
-    <!--                            if (e.target && e.target.nodeName === 'LI') {-->
-    <!--                                inputElement.value = e.target.textContent;-->
-    <!--hintList.innerHTML = ''; // Clear the hint list-->
-    <!--                            }-->
-    <!--                        });-->
-    <!--                        }-->
-    <!--                    });-->
-    <!--                }-->
-    <!--            };-->
-    <!--            xhr.send("dataIndex=" + dataIndex);-->
-    <!--       }-->
-
-    <!--    });-->
-    <!--</script>-->
 
 
 </body>

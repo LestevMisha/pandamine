@@ -11,6 +11,9 @@ $(document).ready(function () {
     $('.input-promocode').change(function () {
         check($(this).parents('form'));
     });
+    $('.input-file').change(function () {
+        check($(this).parents('form'));
+    });
     var nick_time = false;
     $('.input-nick').keyup(function () {
         if(nick_time) clearTimeout(nick_time);
@@ -32,9 +35,17 @@ function check(form) {
         srv: form.find('.input-srv_id').val(),
 		group: form.find('.select-group option:selected').val(),
 		promocode: form.find('.input-promocode').val(),
+        img: form.find('.input-file').val(),
 		price: price,
     },function (data) {
         console.log(price,data);
+
+        var val = form[0].querySelector("option:checked").getAttribute("value");
+        if ((val == 32 || val == 33 || val == 34) && form.find('.input-file').val() == '') {
+            form.find('.btn-info-buy').text('Купить за '+price+' рублей, выберете изображение').prop('disabled',true);
+            return;
+        }
+
         if (data.promo_discount != 0 && data.promo_discount != null) {
             if (data.data != 0 ){
                 price -= (price - data.data) * data.promo_discount;

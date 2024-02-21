@@ -4,18 +4,18 @@ $cfg = array(
     'servers' => array(
         'Выживание' => array(
             'srv_id' => 1,
-				'servers' => array(
-                        array(
-                            'rcon_ip' => '88.99.2.243',
-                            'rcon_port' => 33333,
-                            'rcon_pass' => 'adyh1d89asjkrSAs',
-						),
-                    ),
-                'db' => array(
-                    'mysql_host' => '178.32.198.155',
-                    'mysql_db' => 'surv',
-                    'mysql_user' => 'surv',
-                    'mysql_pass' => '0XqFejdtGVdHLZjJ',
+            'servers' => array(
+                array(
+                    'rcon_ip' => '88.99.2.243',
+                    'rcon_port' => 33333,
+                    'rcon_pass' => 'adyh1d89asjkrSAs',
+                ),
+            ),
+            'db' => array(
+                'mysql_host' => '178.32.198.155',
+                'mysql_db' => 'surv',
+                'mysql_user' => 'surv',
+                'mysql_pass' => '0XqFejdtGVdHLZjJ',
             ),
             'privileges' => array(
                 'Привилегии' => array(
@@ -105,7 +105,7 @@ $cfg = array(
                         'id' => 14,
                         'price' => 13440,
                         'cmd' => 'lp user <user> parent add luxor',
-                        'role' => 'luxor',                    
+                        'role' => 'luxor',
                         'role' => 'elite',
                     )
                 ),
@@ -218,7 +218,7 @@ $cfg = array(
                         'price' => 90,
                         'cmd' => 'lp user <user> parent add vip',
                         'role' => 'vip',
-                    ),                    
+                    ),
                     'Лайт' => array(
                         'id' => 104,
                         'price' => 190,
@@ -239,7 +239,7 @@ $cfg = array(
                         // 'cmd' => 'lp user <user> parent addtemp error 30d;rg addmember -w world donate <user>',
                         'role' => '30d',
                     )
-                 ),
+                ),
                 'Игровая валюта (во время покупки быть онлайн)' => array(
                     '25 000$' => array(
                         'id' => 40,
@@ -317,27 +317,44 @@ $cfg = array(
                         'cmd' => 'unban <user>',
                         'no_extra' => true,
                         'role' => 'unban',
-                    ),
+                    )
+                ),
+
+                'Арендовать Баннер' => array(
                     'Ваш баннер на spawne (1 день)' => array(
                         'id' => 32,
                         'price' => 70,
-                        'cmd' => '#indev',
+                        'days' => 1,
+                        'cmd' => '/donatebanner set-image {link} {user} 1',
                         'no_extra' => true,
                         'role' => '#indev',
                     ),
                     'Ваш баннер на spawne (7 дней)' => array(
                         'id' => 33,
-                        'price' => 60,
-                        'cmd' => '#indev',
+                        'price' => 420,
+                        'days' => 7,
+                        'cmd' => '/donatebanner set-image {link} {user} 2',
                         'no_extra' => true,
                         'role' => '#indev',
                     ),
                     'Ваш баннер на spawne (30 дней)' => array(
                         'id' => 34,
-                        'price' => 50,
-                        'cmd' => '#indev',
+                        'price' => 1500,
+                        'days' => 30,
+                        'cmd' => '/donatebanner set-image {link} {user} 3',
                         'no_extra' => true,
                         'role' => '#indev',
+                    )
+                ),
+
+                'Подписки' => array(
+                    'Подписка PandaPlus' => array(
+                        'id' => 35,
+                        'price' => 299,
+                        'additional_price_text' => "рублей/мес",
+                        'cmd' => 'lp user {user} parent addtemp pandaplus 30d',
+                        'no_extra' => true,
+                        'role' => 'pandaplus',
                     ),
                 ),
             )
@@ -375,4 +392,3 @@ $cfg = array(
 
 );
 //ALTER TABLE `pay` ADD `promo` INT NULL DEFAULT NULL AFTER `respond`;
-?>
