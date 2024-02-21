@@ -317,7 +317,28 @@ $cfg = array(
                         'cmd' => 'unban <user>',
                         'no_extra' => true,
                         'role' => 'unban',
-                    )
+                    ),
+                    'Ваш баннер на spawne (1 день)' => array(
+                        'id' => 32,
+                        'price' => 70,
+                        'cmd' => '#indev',
+                        'no_extra' => true,
+                        'role' => '#indev',
+                    ),
+                    'Ваш баннер на spawne (7 дней)' => array(
+                        'id' => 33,
+                        'price' => 60,
+                        'cmd' => '#indev',
+                        'no_extra' => true,
+                        'role' => '#indev',
+                    ),
+                    'Ваш баннер на spawne (30 дней)' => array(
+                        'id' => 34,
+                        'price' => 50,
+                        'cmd' => '#indev',
+                        'no_extra' => true,
+                        'role' => '#indev',
+                    ),
                 ),
             )
         ),
@@ -326,7 +347,7 @@ $cfg = array(
     'promocode' => 'LIPANDA|PANDAM|PANDA770',
     'promocode_percents' => '5|7|10',
     /* MySQL */
-    'mysql_host' => 'localhost',
+    'mysql_host' => 'server166.hosting.reg.ru',
     'mysql_db' => 'u0718842_panda',
     'mysql_user' => 'u0718842_123',
     'mysql_pass' => 'tR6vK3pW1fpT7zM3',

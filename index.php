@@ -15,7 +15,7 @@ $main = new Main();
     <meta property="og:image" content="/images/panda-back.png">
 
     <?php include 'header/wp_head.php' ?>
-    
+
     <style>
         #hint-list {
             width: 100%;
@@ -28,9 +28,11 @@ $main = new Main();
             overflow: scroll;
             box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
         }
+
         ::marker {
             color: #3cb521;
         }
+
         #hint-list li::before {
             content: '';
             width: 1.1em;
@@ -41,7 +43,7 @@ $main = new Main();
             top: 50%;
             transform: translate(-140%, -50%);
         }
-        
+
         #hint-list li::after {
             content: '';
             width: 0.7em;
@@ -53,16 +55,18 @@ $main = new Main();
             top: 50%;
             transform: translate(-400%, -50%);
         }
+
         #hint-list li {
             padding: 0.5em 0em;
             position: relative;
             cursor: pointer;
             transition: all 0.225s ease-in-out;
         }
+
         #hint-list li:hover {
             transform: translate(0.5em, 0px);
         }
-        
+
         #hint-list li span {
             position: absolute;
             margin-left: 0.5em;
@@ -144,6 +148,10 @@ $main = new Main();
                                                     <?php } ?>
                                                 </select>
                                             </div>
+                                            <div class="upload-field form-group" style="display: none;">
+                                                <label for="upload" class="control-label">Выберете Банер:</label>
+                                                <input class="file" type="file" name="upload" class="form-control" accept="image/*" />
+                                            </div>
                                             <div class="form-group has-feedback">
                                                 <label for="promocode" class="control-label">Введите промокод:</label>
                                                 <input type="text" name="promocode" class="form-control input-promocode" placeholder="если есть">
@@ -161,95 +169,95 @@ $main = new Main();
             </div>
         </div>
     </div>
-    
-    
 
-<!-- JavaScript to capture data-index and send it to the server -->
-<!--<script>-->
-<!--    document.addEventListener("DOMContentLoaded", function () {-->
-        <!--// Get the element with the data-index attribute-->
-<!--        var ulElement = document.getElementById('server-id-js');-->
-<!--        var aElements = ulElement.querySelectorAll('[data-toggle="tab"]');-->
-<!--        console.log(aElements)-->
-        
-<!--        aElements.forEach(element => {-->
-<!--            element.addEventListener('click', function (e) {-->
-<!--                var dataIndex = e.target.getAttribute('data-index')-->
-<!--                server_request(dataIndex);-->
-<!--            })-->
-<!--            if (element.parentElement.classList.contains('active') == true) {-->
-<!--                var dataIndex = element.getAttribute('data-index')-->
-<!--                server_request(dataIndex);-->
-<!--            }-->
-<!--        });-->
-        <!--// Get the data-index attribute value-->
-       
-<!--       function server_request(dataIndex) {-->
-                       <!--// Send the value to the server using AJAX-->
-<!--            var xhr = new XMLHttpRequest();-->
-<!--            xhr.open("POST", "./server_list.php", true);-->
-<!--            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");-->
-<!--            xhr.onreadystatechange = function () {-->
-<!--                if (xhr.readyState === 4 && xhr.status === 200) {-->
 
-                    <!--// Handle the server's response if needed-->
-<!--                    var data = JSON.parse(xhr.responseText);-->
-<!--                    console.log("DATA:", data);-->
-                    
-<!--                    var users = data[1];-->
-<!--                    console.log("users:", users);-->
 
-                    <!--// Input element and hint list-->
-<!--                    var tabContainer = document.getElementById('tabs-for-js');-->
+    <!-- JavaScript to capture data-index and send it to the server -->
+    <!--<script>-->
+    <!--    document.addEventListener("DOMContentLoaded", function () {-->
+    <!--// Get the element with the data-index attribute-->
+    <!--        var ulElement = document.getElementById('server-id-js');-->
+    <!--        var aElements = ulElement.querySelectorAll('[data-toggle="tab"]');-->
+    <!--        console.log(aElements)-->
 
-                    <!--// Add an input event listener to the input field-->
-<!--                    tabContainer.addEventListener('input', function (e) {-->
-<!--                        var inputElement = e.target;-->
-<!--                        if (inputElement.classList.contains('input-nick')) {-->
-<!--                            var hintList = inputElement.nextElementSibling;-->
-                        
-                        <!--var inputText = inputElement.value.toLowerCase(); // Convert input to lowercase-->
-<!--                        var matches = [];-->
-                    
-                        <!--// Filter the array for matches-->
-<!--                        if (inputText) {-->
-<!--                            matches = users.filter(function (item) {-->
-<!--                                return [item[1].toLowerCase().includes(inputText), item[0].toLowerCase().includes(inputText)];-->
-<!--                            });-->
-<!--                        }-->
-                    
-                        <!--// Clear the hint list-->
-<!--                        hintList.innerHTML = '';-->
-                    
-                        <!--// Display matching hints-->
-<!--                        matches.forEach(function (match) {-->
-<!--                            var hintItem = document.createElement('li');-->
-<!--                            var span = document.createElement("span");-->
-<!--                            span.textContent = match[0];-->
-<!--                            hintItem.textContent = match[1];-->
-<!--                            if (match[0] == "luxor") {-->
-<!--                                span.style.color = "#E664F3";-->
-<!--                            }-->
-<!--                            hintItem.append(span);-->
-<!--                            hintList.appendChild(hintItem);-->
-<!--                        });-->
-                        
-                        <!--// Add a click event listener to handle hint selection-->
-<!--                        hintList.addEventListener('click', function (e) {-->
-<!--                            if (e.target && e.target.nodeName === 'LI') {-->
-<!--                                inputElement.value = e.target.textContent;-->
-                                <!--hintList.innerHTML = ''; // Clear the hint list-->
-<!--                            }-->
-<!--                        });-->
-<!--                        }-->
-<!--                    });-->
-<!--                }-->
-<!--            };-->
-<!--            xhr.send("dataIndex=" + dataIndex);-->
-<!--       }-->
-       
-<!--    });-->
-<!--</script>-->
+    <!--        aElements.forEach(element => {-->
+    <!--            element.addEventListener('click', function (e) {-->
+    <!--                var dataIndex = e.target.getAttribute('data-index')-->
+    <!--                server_request(dataIndex);-->
+    <!--            })-->
+    <!--            if (element.parentElement.classList.contains('active') == true) {-->
+    <!--                var dataIndex = element.getAttribute('data-index')-->
+    <!--                server_request(dataIndex);-->
+    <!--            }-->
+    <!--        });-->
+    <!--// Get the data-index attribute value-->
+
+    <!--       function server_request(dataIndex) {-->
+    <!--// Send the value to the server using AJAX-->
+    <!--            var xhr = new XMLHttpRequest();-->
+    <!--            xhr.open("POST", "./server_list.php", true);-->
+    <!--            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");-->
+    <!--            xhr.onreadystatechange = function () {-->
+    <!--                if (xhr.readyState === 4 && xhr.status === 200) {-->
+
+    <!--// Handle the server's response if needed-->
+    <!--                    var data = JSON.parse(xhr.responseText);-->
+    <!--                    console.log("DATA:", data);-->
+
+    <!--                    var users = data[1];-->
+    <!--                    console.log("users:", users);-->
+
+    <!--// Input element and hint list-->
+    <!--                    var tabContainer = document.getElementById('tabs-for-js');-->
+
+    <!--// Add an input event listener to the input field-->
+    <!--                    tabContainer.addEventListener('input', function (e) {-->
+    <!--                        var inputElement = e.target;-->
+    <!--                        if (inputElement.classList.contains('input-nick')) {-->
+    <!--                            var hintList = inputElement.nextElementSibling;-->
+
+    <!--var inputText = inputElement.value.toLowerCase(); // Convert input to lowercase-->
+    <!--                        var matches = [];-->
+
+    <!--// Filter the array for matches-->
+    <!--                        if (inputText) {-->
+    <!--                            matches = users.filter(function (item) {-->
+    <!--                                return [item[1].toLowerCase().includes(inputText), item[0].toLowerCase().includes(inputText)];-->
+    <!--                            });-->
+    <!--                        }-->
+
+    <!--// Clear the hint list-->
+    <!--                        hintList.innerHTML = '';-->
+
+    <!--// Display matching hints-->
+    <!--                        matches.forEach(function (match) {-->
+    <!--                            var hintItem = document.createElement('li');-->
+    <!--                            var span = document.createElement("span");-->
+    <!--                            span.textContent = match[0];-->
+    <!--                            hintItem.textContent = match[1];-->
+    <!--                            if (match[0] == "luxor") {-->
+    <!--                                span.style.color = "#E664F3";-->
+    <!--                            }-->
+    <!--                            hintItem.append(span);-->
+    <!--                            hintList.appendChild(hintItem);-->
+    <!--                        });-->
+
+    <!--// Add a click event listener to handle hint selection-->
+    <!--                        hintList.addEventListener('click', function (e) {-->
+    <!--                            if (e.target && e.target.nodeName === 'LI') {-->
+    <!--                                inputElement.value = e.target.textContent;-->
+    <!--hintList.innerHTML = ''; // Clear the hint list-->
+    <!--                            }-->
+    <!--                        });-->
+    <!--                        }-->
+    <!--                    });-->
+    <!--                }-->
+    <!--            };-->
+    <!--            xhr.send("dataIndex=" + dataIndex);-->
+    <!--       }-->
+
+    <!--    });-->
+    <!--</script>-->
 
 
 </body>

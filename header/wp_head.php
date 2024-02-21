@@ -41,3 +41,5 @@
         box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, .5);
     }
 </style>
+
+<script defer type="text/javascript" src="/js/main.js"></script>
