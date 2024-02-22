@@ -10,8 +10,9 @@ include 'config_.php';
 $status = 'paid';
 error_reporting(0);
 
-function getClientIP() {
-    if(isset($_SERVER['HTTP_X_REAL_IP'])) {
+function getClientIP()
+{
+    if (isset($_SERVER['HTTP_X_REAL_IP'])) {
         return $_SERVER['HTTP_X_REAL_IP'];
     }
     return $_SERVER['REMOTE_ADDR'];
@@ -25,11 +26,10 @@ if (!in_array($clientIP, $allowedIPs)) {
     error_log("Unauthorized access attempt from IP: $clientIP", 0);
 }
 
-$sign = md5($_REQUEST['MERCHANT_ID'].':'.$_REQUEST['AMOUNT'].':]w5[@%AfLbCl&db:'.$_REQUEST['MERCHANT_ORDER_ID']);
-if($sign != $_REQUEST['SIGN']) {
-	die('wrong sign');
+$sign = md5($_REQUEST['MERCHANT_ID'] . ':' . $_REQUEST['AMOUNT'] . ':]w5[@%AfLbCl&db:' . $_REQUEST['MERCHANT_ORDER_ID']);
+if ($sign != $_REQUEST['SIGN']) {
+    die('wrong sign');
 }
-
 
 $db = new DB();
 $db_srv = new DB($srv['db']);
@@ -41,10 +41,15 @@ $name = $_REQUEST['us_name'];
 $account_field = $_REQUEST['us_custom_field'];
 $account = explode('_', $account_field);
 
+// get name
+$img_url = null;
+if ($_REQUEST['img_name']) {
+    $img_url = $cfg['UPLOAD_WEBSITE_URL'] . $_REQUEST['img_name'];
+}
 
-if ($db_srv->status !== true)
+if ($db_srv->status !== true) {
     return $this->getResponseError('Ошибка подключения к БД сервера!' . $db_srv->status);
-
+}
 $data = $db->get("select * from pay where id = {$account[0]}");
 
 // Выдача кейсов
@@ -61,14 +66,13 @@ if ($srv_id == 2) {
     else
         return $this->getResponseError('Не удалось выдать кейс, из-за ошибки сервера, id платежа: ' . $data[0]['id'] . '; db_erros: ' . $db_srv->mysqli->error);
 } else {
-    $rcon = new Rcon($data[0]);
+    $rcon = new Rcon($data[0], $img_url);
     $cmd_data = $rcon->privilege_pay($data[0]['id']);
     $srv_id = $account[2];
     if ($srv_id == 1) {
-        
+
         $parent = $cfg['servers']['Выживание']['privileges']['Привилегии'][$account[1]]['role'];
-        echo "here";
-        echo $parent;
+
         // Generate a UUID for the 'name' field
         $new_query = "SELECT `name` FROM permissions_surv WHERE `value` = '$name'";
         $result = $mysqli->query($new_query);

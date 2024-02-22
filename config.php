@@ -325,7 +325,7 @@ $cfg = array(
                         'id' => 32,
                         'price' => 70,
                         'days' => 1,
-                        'cmd' => '/donatebanner set-image {link} {user} 1',
+                        'cmd' => '/donatebanner set-image <link> <user> 1',
                         'no_extra' => true,
                         'role' => '#indev',
                     ),
@@ -333,7 +333,7 @@ $cfg = array(
                         'id' => 33,
                         'price' => 420,
                         'days' => 7,
-                        'cmd' => '/donatebanner set-image {link} {user} 2',
+                        'cmd' => '/donatebanner set-image <link> <user> 2',
                         'no_extra' => true,
                         'role' => '#indev',
                     ),
@@ -341,7 +341,7 @@ $cfg = array(
                         'id' => 34,
                         'price' => 1500,
                         'days' => 30,
-                        'cmd' => '/donatebanner set-image {link} {user} 3',
+                        'cmd' => '/donatebanner set-image <link> <user> 3',
                         'no_extra' => true,
                         'role' => '#indev',
                     )
@@ -352,7 +352,7 @@ $cfg = array(
                         'id' => 35,
                         'price' => 299,
                         'additional_price_text' => "рублей/мес",
-                        'cmd' => 'lp user {user} parent addtemp pandaplus 30d',
+                        'cmd' => 'lp user <user> parent addtemp pandaplus 30d',
                         'no_extra' => true,
                         'role' => 'pandaplus',
                     ),
@@ -371,6 +371,7 @@ $cfg = array(
     /* UnitPay */
     'SECRET_KEY' => '6acdf6e881ce50364b8b1c8456ebcf7c',
     'PUBLIC_KEY' => '151851-275b7',
+    'UPLOAD_WEBSITE_URL' => 'https://pandamine.ru/upload/',
 
 
     'console' => array( //CONSOLE SETTINGS

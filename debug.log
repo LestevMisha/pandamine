@@ -1,0 +1,30 @@
+Array
+(
+    [id] => 33
+    [price] => 420
+    [days] => 7
+    [cmd] => /donatebanner set-image {link} {user} 2
+    [no_extra] => 1
+    [role] => #indev
+    [name] => Ваш баннер на spawne (7 дней)
+)
+Array
+(
+    [id] => 33
+    [price] => 420
+    [days] => 7
+    [cmd] => /donatebanner set-image {link} {user} 2
+    [no_extra] => 1
+    [role] => #indev
+    [name] => Ваш баннер на spawne (7 дней)
+)
+------------------------------------------
+11
+https://pandamine.ru/uploads/1708557040_Screenshot 2023-11-09 at 9.09.58 PM.png
+https://pandamine.ru/uploads/1708557055_Screenshot 2023-11-07 at 9.12.21 PM.png
+https://pandamine.ru/uploads/1708557101_image.png
+
+
+# usage example ==>
+$data = array('foo', 'bar', 'baz');
+file_put_contents('debug.log', print_r($data, true), FILE_APPEND);

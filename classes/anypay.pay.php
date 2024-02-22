@@ -47,6 +47,7 @@ $sign = md5($merchant_id.':'.$order_amount.':'.$secret_word.':'.$currency.':'.$o
         <input type='hidden' name='lang' value='ru'>
         <input type='hidden' name='us_custom_field' value='<?php echo $_GET['custom_field']; ?>'>
         <input type='hidden' name='us_name' value='<?php echo $_GET['name']; ?>'>
+        <input type='hidden' name='us_img_name' value='<?php echo $_GET['img_name']; ?>'>
 </form>
 
 <script>

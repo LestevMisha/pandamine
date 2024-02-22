@@ -14,8 +14,9 @@ class Rcon
     private $pay_cmd = false;
     private $pay_name = false;
     private $pay_id = false;
+    private $img_url;
 
-    public function __construct($info)
+    public function __construct($info, $img_url = null)
     {
         $this->db = new DB();
         $group = Main::get_group($info['pid'], $info['srv_id']);
@@ -23,29 +24,26 @@ class Rcon
         $this->pay_cmd = $group['cmd'];
         $this->pay_name = $info['name'];
         $this->pay_id = (int)$info['id'];
+        $this->img_url = $img_url;
 
-    foreach ($srv['servers'] as $r_srv) {
-        try {
-            // Attempt to create a new instance of the Rcon_root class
-            $rcon_instance = new Rcon_root($r_srv['rcon_ip'], $r_srv['rcon_port'], $r_srv['rcon_pass'], 30);
-            // Attempt to establish a connection to the RCON server
-            $status_connect_rcon = $rcon_instance->connect();
-            print_r($status_connect_rcon);
-            // Update the $status property with the connection status
-            $this->status = $this->status && $status_connect_rcon;
-    
-            // Add the Rcon_root instance to the $rcon array
-            $this->rcon[] = $rcon_instance;
-            
-        } catch (Exception $e) {
-            print_r("--HHHHHH!-");
-            // Handle any exceptions that may occur during connection setup
-            // You can log or handle the error here as needed
-            // For example, you can use error_log() to log the error
-            error_log("Error connecting to RCON server: " . $e->getMessage());
+        foreach ($srv['servers'] as $r_srv) {
+            try {
+                // Attempt to create a new instance of the Rcon_root class
+                $rcon_instance = new Rcon_root($r_srv['rcon_ip'], $r_srv['rcon_port'], $r_srv['rcon_pass'], 30);
+                // Attempt to establish a connection to the RCON server
+                $status_connect_rcon = $rcon_instance->connect();
+                // Update the $status property with the connection status
+                $this->status = $this->status && $status_connect_rcon;
+
+                // Add the Rcon_root instance to the $rcon array
+                $this->rcon[] = $rcon_instance;
+            } catch (Exception $e) {
+                // Handle any exceptions that may occur during connection setup
+                // You can log or handle the error here as needed
+                // For example, you can use error_log() to log the error
+                error_log("Error connecting to RCON server: " . $e->getMessage());
+            }
         }
-    }
-
     }
 
     public function privilege_pay()
@@ -53,24 +51,26 @@ class Rcon
         if (empty($this->pay_cmd)) return false;
         $request = '';
         $respond = '';
-        // echo '---> '.$this->pay_cmd;
         foreach (explode(';', $this->pay_cmd) as $cmd) {
             $cmd = str_replace('<user>', $this->pay_name, $cmd);
+            if ($this->img_url) {
+                $cmd = str_replace('<link>', $this->img_url, $cmd);
+            }
             $request .= $cmd;
             $respond .= $this->cmd($cmd);
-            echo "<pre>response: " . $respond . "\n";
-            echo "request: " . $request . "</pre>";
+            // echo "<pre>response: " . $respond . "\n";
+            // echo "request: " . $request . "</pre>";
+            // echo "cmd: " . $cmd . "</pre>";
         }
         $this->db->query("UPDATE `pay` SET status = 1, request = '" . $request . "', respond = '" . $respond . "' WHERE `id` = " . (int)$this->pay_id);
         return $respond;
     }
-    
+
     public function get_list()
     {
-        echo 'get_list';
         if (empty($this->pay_cmd)) return false;
         $respond .= $this->cmd('list');
-        echo "request: " . $request . "</pre>";
+        // echo "request: " . $request . "</pre>";
         return $respond;
     }
 
@@ -84,7 +84,7 @@ class Rcon
                 $responses[] = $trimmedResponse;
             }
         }
-        
+
         if (empty($responses)) {
             return "donate accepted and applied";
         } else {
@@ -92,12 +92,9 @@ class Rcon
         }
     }
 
-    
+
     public function disconnect()
     {
         return $this->rcon->disconnect();
     }
-
 }
-
-?>

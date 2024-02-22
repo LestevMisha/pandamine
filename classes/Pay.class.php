@@ -64,10 +64,10 @@ class Pay {
         }
         else return $this->getResponseError('Метод не поддерживается: '.$method);
     }
-    public function redirect($account, $sum, $privilege_name, $promo, $name){
+    public function redirect($account, $sum, $privilege_name, $promo, $name, $img_name){
         $signature = hash('sha256', $account.'{up}RUB{up}Покупка группы '.$privilege_name.'{up}'.$sum.'{up}'.$this->cfg['SECRET_KEY']);
         //exit(header('Location: https://unitpay.ru/pay/'.$this->cfg['PUBLIC_KEY'].'?sum='.$sum.'&account='.$account.'&desc=Покупка группы '.$privilege_name.'&currency=RUB&signature='.$signature));
-        $url = "/classes/anypay.pay.php?order_amount={$sum}&custom_field={$account}&comment={$privilege_name}&name={$name}";
+        $url = "/classes/anypay.pay.php?order_amount={$sum}&custom_field={$account}&comment={$privilege_name}&name={$name}&img_name={$img_name}";
 
         if (!empty($promo)) {
             $url .= "&promocode={$promo}";
