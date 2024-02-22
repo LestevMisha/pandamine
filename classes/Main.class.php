@@ -51,6 +51,7 @@ class Main
                 $uniqueFileName = time() . '_' . uniqid();
                 $uploadPath = $uploadDir . $uniqueFileName;
                 move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath);
+                $this->resizeImage($uploadPath, 896, 512);
             }
             // +++++++++ end +++++++++
 
@@ -58,6 +59,48 @@ class Main
         }
         if (isset($_REQUEST['successfully'])) $this->add_message('Вы успешно купили привилегию!');
         if (isset($_REQUEST['error'])) $this->add_message('Во время покупки привелегии произошла ошибка!', true);
+    }
+
+
+    // Function to resize the image
+    public function resizeImage($filePath, $width, $height)
+    {
+        list($originalWidth, $originalHeight, $imageType) = getimagesize($filePath);
+
+        switch ($imageType) {
+            case IMAGETYPE_JPEG:
+                $imageOriginal = imagecreatefromjpeg($filePath);
+                break;
+            case IMAGETYPE_PNG:
+                $imageOriginal = imagecreatefrompng($filePath);
+                break;
+            case IMAGETYPE_GIF:
+                $imageOriginal = imagecreatefromgif($filePath);
+                break;
+            default:
+                die("Unsupported image type");
+        }
+
+        $imageResized = imagecreatetruecolor($width, $height);
+
+        imagecopyresampled($imageResized, $imageOriginal, 0, 0, 0, 0, $width, $height, $originalWidth, $originalHeight);
+
+        // Save the resized image back to the original file path
+        switch ($imageType) {
+            case IMAGETYPE_JPEG:
+                imagejpeg($imageResized, $filePath);
+                break;
+            case IMAGETYPE_PNG:
+                imagepng($imageResized, $filePath);
+                break;
+            case IMAGETYPE_GIF:
+                imagegif($imageResized, $filePath);
+                break;
+        }
+
+        // Free up memory
+        imagedestroy($imageResized);
+        imagedestroy($imageOriginal);
     }
 
     public static function find_group_for_list($name, $list)
