@@ -43,8 +43,8 @@ $account = explode('_', $account_field);
 
 // get name
 $img_url = null;
-if ($_REQUEST['img_name']) {
-    $img_url = $cfg['UPLOAD_WEBSITE_URL'] . $_REQUEST['img_name'];
+if ($_REQUEST['us_img_name']) {
+    $img_url = $cfg['UPLOAD_WEBSITE_URL'] . $_REQUEST['us_img_name'];
 }
 
 if ($db_srv->status !== true) {

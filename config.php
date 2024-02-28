@@ -371,7 +371,7 @@ $cfg = array(
     /* UnitPay */
     'SECRET_KEY' => '6acdf6e881ce50364b8b1c8456ebcf7c',
     'PUBLIC_KEY' => '151851-275b7',
-    'UPLOAD_WEBSITE_URL' => 'https://pandamine.ru/upload/',
+    'UPLOAD_WEBSITE_URL' => 'https://pandamine.ru/uploads/',
 
 
     'console' => array( //CONSOLE SETTINGS
