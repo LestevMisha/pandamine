@@ -62,6 +62,8 @@ class Rcon
 
         $this->db->query("UPDATE `pay` SET status = 1, request = '" . $request . "', respond = '" . $respond . "' WHERE `id` = " . (int)$this->pay_id);
 
+        echo "request: ";
+        print_r($request);
         return $respond;
     }
 
