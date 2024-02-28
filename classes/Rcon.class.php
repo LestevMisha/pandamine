@@ -49,25 +49,26 @@ class Rcon
     public function privilege_pay()
     {
         if (empty($this->pay_cmd)) return false;
+
         $request = '';
         $respond = '';
+
         foreach (explode(';', $this->pay_cmd) as $cmd) {
-            $cmd = str_replace('<user>', $this->pay_name, $cmd);
-            if ($this->img_url) {
-                $cmd = str_replace('<link>', $this->img_url, $cmd);
-            }
+            $cmd = str_replace(['<user>', '<link>'], [$this->pay_name, $this->img_url], $cmd);
+
             $request .= $cmd;
             $respond .= $this->cmd($cmd);
-            // echo "<pre>response: " . $respond . "\n";
-            // echo "request: " . $request . "</pre>";
-            // echo "cmd: " . $cmd . "</pre>";
         }
+
         $this->db->query("UPDATE `pay` SET status = 1, request = '" . $request . "', respond = '" . $respond . "' WHERE `id` = " . (int)$this->pay_id);
+
         return $respond;
     }
 
+
     public function get_list()
     {
+        $respond = "";
         if (empty($this->pay_cmd)) return false;
         $respond .= $this->cmd('list');
         // echo "request: " . $request . "</pre>";

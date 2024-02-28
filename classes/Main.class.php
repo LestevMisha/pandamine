@@ -51,7 +51,7 @@ class Main
                 $uniqueFileName = time() . '_' . uniqid();
                 $uploadPath = $uploadDir . $uniqueFileName;
                 move_uploaded_file($_FILES["image"]["tmp_name"], $uploadPath);
-                $this->resizeImage($uploadPath, 896, 512);
+                $this->resizeImage($uploadPath, 1152, 640);
             }
             // +++++++++ end +++++++++
 
